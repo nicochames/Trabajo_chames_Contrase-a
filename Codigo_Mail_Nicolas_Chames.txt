@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
 
-
 void main() {
   runApp(const MainApp());
 }
 
-
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
-
 
   @override
   State<MainApp> createState() => _MainAppState();
 }
-
 
 class _MainAppState extends State<MainApp> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   String message = '';
 
-
-  final String correctEmail = "user@example.com";
+  final String correctEmail = "persona@ejemplo.com";
   final String correctPassword = "1234";
-
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +50,9 @@ class _MainAppState extends State<MainApp> {
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
-                      if (emailController.text == correctEmail &&
+                      if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+                        message = "Por favor, completa todos los campos";
+                      } else if (emailController.text == correctEmail &&
                           passwordController.text == correctPassword) {
                         message = "Acceso concedido";
                       } else {
@@ -76,6 +72,3 @@ class _MainAppState extends State<MainApp> {
     );
   }
 }
-
-
-
